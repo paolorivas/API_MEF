@@ -3,4 +3,6 @@ Cómo extraer datos utilizando la API del Ministerio de Economía y Finanzas (PE
 
 En este Github page podrás encontrar un HTML y un Rstudio File con las instrucciones para realizar extracción de datos utilizando el API libre del Ministerio de Economía y Finanzas del Perú. Para ello será necesario descargar el paquete "junr" específico para realizar esta función con mayor facilidad utilizando R como lenguaje de extracción.  
 
+PAra ver el documento en version web hacer click a esta direccion: https://paolorivas.github.io/API_MEF/
+
 en caso de dudas: privas.legua@gmail.com
