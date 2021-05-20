@@ -97,6 +97,6 @@ Hay un para de utilidades para hacerlo clean_currency y get_currency_symbol. Por
 datos_con_divisas <- get_data(url_base, api_key, "LICIT-ADJUD-POR-LOS-MINIS")
 datos_con_divisas$`Monto Adjudicado` <- clean_currency(datos_con_divisas$`Monto Adjudicado`) 
 
-
+#RMD con cambios
 ```
 
