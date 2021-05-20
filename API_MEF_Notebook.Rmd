@@ -1,8 +1,10 @@
 ---
-title: "API_MEF_inRstudio"
+title: "API_MEF in Rstudio"
 author: "Paolo Rivas"
 date: "5/19/2021"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ## Acceder Datos Abiertos del MEF a Través del API de Junar
@@ -13,10 +15,10 @@ El API de Junar es la base para varias iniciativas de Datos Abiertos en Latino A
 
 El paquete se ha publicado en CRAN y po lo tanto se puede instalar directamente en R usando:
 
-```{r cars}
+```{r}
 #install.packages("devtools")
 #devtools::install_github("FvD/junr")
-library(rmarkdown)
+
 ```
 
 ### Cómo mirar datos
@@ -27,7 +29,7 @@ Como ejemplo vamos a usar los datos abiertos del Ministerio de [Economia y Finan
 
 library(junr)
 base_url <- "http://api.datosabiertos.mef.gob.pe/api/v2/datastreams/"
-api_key <- "id6QjCejKcuLIoyZ57I9d2OpuRe9nGvRAbM8CLNS"
+api_key <- "IODs4OFmhypXXEMcLgRf97tHSo2QZFTjGy38voMh"
 
 ```
 
@@ -43,13 +45,13 @@ Para tener solo una lista de los GUID la instrucción es:
 
 ```{r}
 list <- list_guid(base_url, api_key)
-list[1:10]
+list[1:100]
 ```
 Y solo un listado de los títulos.
 
 ```{r}
 list_titles <- list_titles(base_url, api_key)
-list_titles[1:10]
+list_titles[1:100]
 ```
 Tanto list_guid() como list_titles() fueron escritos para hacernos la vida mas fácil ya que los resultados tienden a ajustarse a una ventana de consola, lo cual lo hace mas fácil leerlos. Ayudan para tener una sobrevista rápida de los datos que hay disponibles.
 
@@ -58,10 +60,10 @@ Tanto list_guid() como list_titles() fueron escritos para hacernos la vida mas f
 Nesitas conocer el Identificador Global Único (GUID) de los datos que son de tu interés para poder bajar los datos a tu sesión de R. Puedes buscar el GUID en la página web.
 
 ```{r}
-guid_datos <- "COMPA-DE-GASTO-DEL-GOBIE"
+guid_datos <- "COMPA-GR-56818"
 datos_comparacion <- get_data(base_url, api_key, guid_datos)
 
-#View(datos_comparacion)
+View(datos_comparacion)
 ```
 Con View(datos_compras) podrás comprobar que los datos han sido bajado desde la plataforma Junar y han sido convertidos a una hoja de datos (data frame) en R (mira mas abajo para convertir datos de divisas a números).
 
@@ -83,7 +85,7 @@ En las plataformas que corren en Junar se encuentran muchos datos que no son mas
 En junr lo puedes hacer rápidamente usando la función get_dimensions para obtener una tabla con todos los GUID y las dimensiones de los datos:
 
 ```{r}
-#get_dimensions(base_url, api_key)
+get_dimensions(base_url, api_key)
 ```
 ### Limpiar valores de divisas 
 
@@ -92,7 +94,9 @@ Por lo menos en los datos ejemplo que se ha utilizado de inspiracion para esta c
 Hay un para de utilidades para hacerlo clean_currency y get_currency_symbol. Por ejemplo:
 
 ```{r}
-#datos_con_divisas <- get_data(url_base, api_key, "LICIT-ADJUD-POR-LOS-MINIS")
-#datos_con_divisas$`Monto Adjudicado` <- clean_currency(datos_con_divisas$`Monto Adjudicado`) 
+datos_con_divisas <- get_data(url_base, api_key, "LICIT-ADJUD-POR-LOS-MINIS")
+datos_con_divisas$`Monto Adjudicado` <- clean_currency(datos_con_divisas$`Monto Adjudicado`) 
+
+
 ```
 
