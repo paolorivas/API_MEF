@@ -1,0 +1,100 @@
+---
+title: "API_MEF in Rstudio"
+author: "Paolo Rivas"
+date: "5/19/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## Acceder Datos Abiertos del MEF a Través del API de Junar
+
+### Introducción
+
+El API de Junar es la base para varias iniciativas de Datos Abiertos en Latino América y los EEUU. El paquete junr facilita el acceso a estos datos desde R. El objetivo es fomentar el uso de los datos disponibles haciendo el acceso lo mas fácil. Algunos ejemplos de implementaciones son: el Portal de Datos Abiertos del [Ministerio de Economía y Finanzas Peruano](https://datosabiertos.mef.gob.pe/developers/) entre otros. Otros se pueden encontrar en el sitio web de [Junar](https://junar.com/).
+
+El paquete se ha publicado en CRAN y po lo tanto se puede instalar directamente en R usando:
+
+```{r}
+#install.packages("devtools")
+#devtools::install_github("FvD/junr")
+
+```
+
+### Cómo mirar datos
+
+Como ejemplo vamos a usar los datos abiertos del Ministerio de [Economia y Finanzas del Peru (MEF)](https://datosabiertos.mef.gob.pe/home). Lo primero es ir al sitio correspondiente para encontrar el URL base (base_url) y obtener un API Key para obtener acceso al API de Junar en la página de Datos Abiertos del MEF.
+
+```{r pressure, echo=FALSE}
+
+library(junr)
+base_url <- "http://api.datosabiertos.mef.gob.pe/api/v2/datastreams/"
+api_key <- "id6QjCejKcuLIoyZ57I9d2OpuRe9nGvRAbM8CLNS"
+
+```
+
+Miremos primero cuales datos hay disponibles en este URL (hojearlos).
+
+```{r}
+get_index(base_url, api_key)
+```
+
+No mostramos los resultados aquí porque el indice es la lista completa con todos los meta-datos incluidos como una hoja de datos (data frame) en R.
+
+Para tener solo una lista de los GUID la instrucción es:
+
+```{r}
+list <- list_guid(base_url, api_key)
+list[1:10]
+```
+Y solo un listado de los títulos.
+
+```{r}
+list_titles <- list_titles(base_url, api_key)
+list_titles[1:10]
+```
+Tanto list_guid() como list_titles() fueron escritos para hacernos la vida mas fácil ya que los resultados tienden a ajustarse a una ventana de consola, lo cual lo hace mas fácil leerlos. Ayudan para tener una sobrevista rápida de los datos que hay disponibles.
+
+### Bajar datos a R
+
+Nesitas conocer el Identificador Global Único (GUID) de los datos que son de tu interés para poder bajar los datos a tu sesión de R. Puedes buscar el GUID en la página web.
+
+```{r}
+guid_datos <- "COMPA-DE-GASTO-DEL-GOBIE"
+datos_comparacion <- get_data(base_url, api_key, guid_datos)
+
+#View(datos_comparacion)
+```
+Con View(datos_compras) podrás comprobar que los datos han sido bajado desde la plataforma Junar y han sido convertidos a una hoja de datos (data frame) en R (mira mas abajo para convertir datos de divisas a números).
+
+```{r}
+colnames(datos_comparacion)
+```
+Observa que no necesitamos ir a la interfaz para buscar los GUID de los conjuntos de datos que nos interesan. Con la función list_guid() como la usamos arriba obtuvimos la misma información.
+
+```{r}
+datos_disponibles <- list_guid(base_url, api_key)
+datos_disponibles[3]
+```
+Obtenemos el GUID que queremos indicando que es el tercero en la lista (mira la lista completa mas arriba). Y el mismo índice se puede usar en una lista de los títulos completos que podemos crear con la función list_titles().
+
+### Determinar la cantidad de datos disponibles
+
+En las plataformas que corren en Junar se encuentran muchos datos que no son mas que tablas (datos ya trabajados y resumidos). Por eso es útil poder ver de una vez cuantos filas hay detrás de cada GUID en el URL disponible.
+
+En junr lo puedes hacer rápidamente usando la función get_dimensions para obtener una tabla con todos los GUID y las dimensiones de los datos:
+
+```{r}
+get_dimensions(base_url, api_key)
+```
+### Limpiar valores de divisas 
+
+Por lo menos en los datos ejemplo que se ha utilizado de inspiracion para esta colaboración, pero posiblemente en mas implementaciones de Junar, hay que limpiar todos los datos que corresponden a divisas. En nuestro caso hay que buscar todos los símbolos de la divisa (ejem. Colon Costarricense), y todas las comas ya que estas hacen que para R son valores de Texto y no números.
+
+Hay un para de utilidades para hacerlo clean_currency y get_currency_symbol. Por ejemplo:
+
+```{r}
+datos_con_divisas <- get_data(url_base, api_key, "LICIT-ADJUD-POR-LOS-MINIS")
+datos_con_divisas$`Monto Adjudicado` <- clean_currency(datos_con_divisas$`Monto Adjudicado`) 
+```
+
