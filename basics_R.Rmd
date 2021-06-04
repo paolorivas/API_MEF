@@ -1,0 +1,124 @@
+---
+title: "Intro_to_R"
+author: "Paolo Rivas"
+date: "6/2/2021"
+output: html_document
+---
+## BASICS en R
+
+### Cómo funciona R?
+El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, Calcula 3+4 en el editor. Algunos comands importantes.
+
+```{r}
+#Calcula 3 + 4
+3 + 4
+#Calcula 6 + 12
+6 + 12
+
+```
+```{r}
+# Una Suma
+5 + 5 
+
+# Una Resta
+5 - 5 
+
+# Una multiplicación
+3 * 5
+
+ # Una división 
+(5 + 5) / 2 
+
+# Exponenciales
+2 ^ 5
+
+# Modulo
+28 %% 6
+```
+
+### Asignación de variables
+```{r}
+# Asignar el valo de 42.
+
+x <- 42
+
+#imprime el valor de la variable x
+
+x
+
+# Asignar el valor de 5 a la variable mis_manzanas y mis_naranjas
+
+mis_manzanas <- 5
+mis_naranjas <- 6
+
+# Sumas tus viarbles
+
+mis_manzanas + mis_naranjas
+
+# Crea la variable mis_frutas 
+
+mis_frutas <- mis_manzanas + mis_naranjas
+
+#imprime tus nuevas variables
+
+mis_naranjas
+mis_fruitas 
+
+```
+
+### Asigna distintos tipos de información en tus variables
+enteros, decimales, caracteres y valores lógicos son permitidos
+
+```{r}
+#Cambia my_numero a 42
+
+mi_numero <- 42
+
+#Cambia mi caracter <- "universo"
+
+mi_caracter <- "universo"
+
+#Cambia mi_logica <- FALSE 
+
+mi_logica <- FALSE
+
+
+```
+### Que tipo de dato es?
+
+Si sumas 5 + "seis" vas a encontrar un error a causa e la incompatibilidad de estos tipos de datos. Para evitar este inconveniente es bueno revisar el tipo de variable que tienes antes. Lo puedes hacer utilizando la función clas()
+
+```{r}
+# Declara tres tipos de variables diferentes
+
+numero <- 42
+caracter <- "palabra"
+logica <- FALSE
+
+#chekea el tipo de datos que es cada uno
+
+class(numero)
+class(caracter)
+class(logica)
+```
+## Sube una base de datos cargada en R.
+```{r cars}
+summary(cars)
+```
+
+### cargar un archivo excel?
+
+Estas son las linas de codigo que necesitas. También tienes una opción automática en el browser de Rstudio.
+
+```{r}
+# cargar este paquete
+library("readxl")
+
+# archivos xls 
+mi_data <- read_excel("my_file.xls")
+
+# archivos xlsx
+mi_data <- read_excel("my_file.xlsx")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
