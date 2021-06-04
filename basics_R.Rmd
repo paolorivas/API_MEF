@@ -121,4 +121,5 @@ mi_data <- read_excel("my_file.xls")
 mi_data <- read_excel("my_file.xlsx")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### El material de cada clase será actualizado en este mismo file para la próxima sesión
+

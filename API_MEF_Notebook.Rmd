@@ -45,7 +45,7 @@ Para tener solo una lista de los GUID la instrucción es:
 
 ```{r}
 list <- list_guid(base_url, api_key)
-list[1:100]
+list[1:10]
 ```
 Y solo un listado de los títulos.
 
@@ -60,7 +60,7 @@ Tanto list_guid() como list_titles() fueron escritos para hacernos la vida mas f
 Nesitas conocer el Identificador Global Único (GUID) de los datos que son de tu interés para poder bajar los datos a tu sesión de R. Puedes buscar el GUID en la página web.
 
 ```{r}
-guid_datos <- "COMPA-GR-56818"
+guid_datos <- "DEUDA-POR-TIPO-DE-89894"
 datos_comparacion <- get_data(base_url, api_key, guid_datos)
 
 View(datos_comparacion)
@@ -69,6 +69,10 @@ Con View(datos_compras) podrás comprobar que los datos han sido bajado desde la
 
 ```{r}
 colnames(datos_comparacion)
+
+var1  <- datos_comparacion$PIA_2014
+
+plot(var1)
 ```
 Observa que no necesitamos ir a la interfaz para buscar los GUID de los conjuntos de datos que nos interesan. Con la función list_guid() como la usamos arriba obtuvimos la misma información.
 
