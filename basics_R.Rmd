@@ -7,7 +7,7 @@ output: html_document
 ## BASICS en R
 
 ### Cómo funciona R?
-El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, Calcula 3+4 en el editor. Algunos comands importantes.
+El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, Calcula 3+4 en el editor. Algunos comands importantes [https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts](Aquí).
 
 ```{r}
 #Calcula 3 + 4
@@ -35,7 +35,6 @@ El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, 
 # Modulo
 28 %% 6
 ```
-
 ### Asignación de variables
 ```{r}
 # Asignar el valo de 42.
@@ -122,4 +121,8 @@ mi_data <- read_excel("my_file.xlsx")
 ```
 
 ### El material de cada clase será actualizado en este mismo file para la próxima sesión
+```{r}
+
+```
+
 
