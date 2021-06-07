@@ -576,27 +576,26 @@ mean(poker_start)
 
 ---
 
-## Selection by comparison - Step 1
+## Selección por comparación - Paso 1
 
-By making use of comparison operators, we can approach the previous question in a more proactive way. 
+Al hacer uso de operadores de comparación, podemos abordar la pregunta anterior de una manera más proactiva.
 
-The (logical) comparison operators known to R are:
+Los operadores de comparación (lógicos) conocidos por R son:
 
-- `<` for less than
-- `>` for greater than
-- `<=` for less than or equal to
-- `>=` for greater than or equal to
-- `==` for equal to each other
-- `!=` not equal to each other
+- `<` por menos de
+- `>` para mayor que
+- `<=` por menor o igual a
+- `> =` para mayor o igual a
+- `==` por iguales entre sí
+- `! =` no iguales entre sí
 
-As seen in the previous chapter, stating `6 > 5` returns `TRUE`. The nice thing about R is that you can use these comparison operators also on vectors. For example:
+Como se vio en el capítulo anterior, si indica `6> 5`, devuelve` TRUE`. Lo bueno de R es que puede usar estos operadores de comparación también en vectores. Por ejemplo:
 
 ```
 c(4, 5, 6) > 5
 [1] FALSE FALSE TRUE
 ```
-
-This command tests for every element of the vector if the condition stated by the comparison operator is `TRUE` or `FALSE`.
+Este comando prueba cada elemento del vector si la condición indicada por el operador de comparación es "VERDADERO" o "FALSO".
 
 `@sample_code`
 ```{r}
@@ -631,9 +630,6 @@ selection_vector
 ```
 
 ---
-
-## Selection by comparison - Step 2
-
 
 ## Selección por comparación - Paso 2
 
