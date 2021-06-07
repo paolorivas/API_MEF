@@ -9,6 +9,9 @@ output: html_document
 ### Cómo funciona R?
 El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, Calcula 3+4 en el editor. Algunos comands importantes [https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts](Aquí).
 
+### Crear ventanilla de linea de codigo
+
+
 ```{r}
 #Calcula 3 + 4
 3 + 4
@@ -37,7 +40,7 @@ El simbolo de "#" te permitirá colocar comentarios en tu código. Por ejemplo, 
 ```
 ### Asignación de variables
 ```{r}
-# Asignar el valo de 42.
+#Asignar el valo de 42.
 
 x <- 42
 
@@ -61,7 +64,7 @@ mis_frutas <- mis_manzanas + mis_naranjas
 #imprime tus nuevas variables
 
 mis_naranjas
-mis_fruitas 
+mis_frutas 
 
 ```
 
@@ -77,9 +80,13 @@ mi_numero <- 42
 
 mi_caracter <- "universo"
 
+mi_caracter
+
 #Cambia mi_logica <- FALSE 
 
 mi_logica <- FALSE
+
+mi_logica
 
 
 ```
@@ -102,7 +109,12 @@ class(logica)
 ```
 ## Sube una base de datos cargada en R.
 ```{r cars}
+
 summary(cars)
+
+View(cars)
+
+plot(cars)
 ```
 
 ### cargar un archivo excel?
@@ -111,13 +123,15 @@ Estas son las linas de codigo que necesitas. También tienes una opción automá
 
 ```{r}
 # cargar este paquete
+install.packages("readxl")
+
 library("readxl")
 
 # archivos xls 
-mi_data <- read_excel("my_file.xls")
+mi_data <- read.csv("concerts.csv")
 
 # archivos xlsx
-mi_data <- read_excel("my_file.xlsx")
+#mi_data <- read_excel("my_file.xlsx")
 ```
 
 ### El material de cada clase será actualizado en este mismo file para la próxima sesión
