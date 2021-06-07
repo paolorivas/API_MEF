@@ -1,13 +1,14 @@
 ---
-title: "Vectors"
-description: We take you on a trip to Vegas, where you will learn how to analyze your
-  gambling results using vectors in R. After completing this chapter, you will be
-  able to create vectors in R, name them, select elements from them, and compare different
-  vectors.
-title_meta: Chapter 2
+title: "Vectores"
+
+descripcion: Te llevamos de viaje a Las Vegas, donde aprenderás a analizar tu
+    resultados de los juegos de azar usando vectores en R. Después de completar este capítulo,
+    capaz de crear vectores en R, nombrarlos, seleccionar elementos de ellos y comparar diferentes
+    vectores.
+title_meta: Capitulo 2
 ---
 
-## Create a vector
+## Crear un vector
 
 `@sample_code`
 ```{r}
@@ -24,13 +25,13 @@ vegas <- "Go!"
 
 ---
 
-## Create a vector (2)
+## Crear un vector (2)
 
 ```
 
-Let us focus first! 
+Empecemos!
 
-On your way from rags to riches, you will make extensive use of vectors. Vectors are one-dimension arrays that can hold numeric data, character data, or logical data. In other words, a vector is a simple tool to store data. For example, you can store your daily gains and losses in the casinos. 
+En su camino de la pobreza a la riqueza, ud. hará un uso extensivo de los vectores. Los vectores son matrices de una dimensión que pueden contener datos numéricos, datos de caracteres o datos lógicos. En otras palabras, un vector es una herramienta simple para almacenar datos. Por ejemplo, puede almacenar sus ganancias y pérdidas diarias en los casinos.
 
 
 ```
@@ -38,13 +39,8 @@ numeric_vector <- c(1, 2, 3)
 character_vector <- c("a", "b", "c")
 ```
 
-Once you have created these vectors in R, you can use them to do calculations.
+Una vez que haya creado estos vectores en R, puede usarlos para hacer cálculos.
 
-`@instructions`
-Complete the code such that `boolean_vector` contains the three elements: `TRUE`, `FALSE` and `TRUE` (in that order).
-
-`@hint`
-Assign `c(TRUE, FALSE, TRUE)` to the variable `boolean_vector` with the `<-` operator.
 
 `@sample_code`
 ```{r}
@@ -67,35 +63,30 @@ boolean_vector <- c(TRUE, FALSE, TRUE)
 
 ---
 
-## Create a vector (3)
+## Crea un vector (3)
 
-After one week in Las Vegas and still zero Ferraris in your garage, you decide that it is time to start using your data analytical superpowers.
+Después de una semana en Las Vegas y aún sin Ferrari en su garaje, decide que es hora de comenzar a usar sus superpoderes de análisis de datos.
 
-Before doing a first analysis, you decide to first collect all the winnings and losses for the last week: 
+Antes de hacer un primer análisis, decide recopilar primero todas las ganancias y pérdidas de la última semana: 
 
-For `poker_vector`: 
+Para `poker_vector`:
 
-- On Monday you won $140
-- Tuesday you lost $50
-- Wednesday you won $20 
-- Thursday you lost $120
-- Friday you won $240
+- El lunes ganaste $ 140
+- El martes perdiste $ 50
+- El miércoles ganaste $ 20
+- El jueves perdiste $ 120
+- El viernes ganaste $ 240
 
-For `roulette_vector`: 
+Para `roulette_vector`:
 
-- On Monday you lost $24
-- Tuesday you lost $50
-- Wednesday you won $100
-- Thursday you lost $350
-- Friday you won $10
+- El lunes perdiste $ 24
+- El martes perdiste $ 50
+- El miércoles ganaste $ 100
+- El jueves perdiste $ 350
+- El viernes ganaste $ 10
 
-You only played poker and roulette, since there was a delegation of mediums that occupied the craps tables. To be able to use this data in R, you decide to create the variables `poker_vector` and `roulette_vector`.
+Solo jugabas al póquer y a la ruleta, ya que había una delegación de médiums que ocupaba las mesas de dados. Para poder utilizar estos datos en R, decides crear las variables `poker_vector` y` roulette_vector`.
 
-`@instructions`
-Assign the winnings/losses for roulette to the variable `roulette_vector`. You lost $24, then lost $50, won $100, lost $350, and won $10.
-
-`@hint`
-To help you with this step, the editor already contains the code for creating `poker_vector`. Assign the correct values to `roulette_vector` based on the numbers in the assignment. Do not forget that losses are negative numbers.
 
 `@sample_code`
 ```{r}
@@ -117,31 +108,25 @@ roulette_vector <- c(-24, -50, 100, -350, 10)
 
 ---
 
-## Naming a vector
+## Nombrando vectores
 
-As a data analyst, it is important to have a clear view on the data that you are using. Understanding what each element refers to is therefore essential. 
+Como analista de datos, es importante tener una visión clara de los datos que está utilizando. Por tanto, comprender a qué se refiere cada elemento es fundamental.
 
-In the previous exercise, we created a vector with your winnings over the week. Each vector element refers to a day of the week but it is hard to tell which element belongs to which day. It would be nice if you could show that in the vector itself. 
+En el ejercicio anterior, creamos un vector con sus ganancias durante la semana. Cada elemento del vector se refiere a un día de la semana, pero es difícil saber qué elemento pertenece a qué día. Sería bueno si pudieras mostrar eso en el vector mismo.
 
-You can give a name to the elements of a vector with the `names()` function. Have a look at this example:
+Puede dar un nombre a los elementos de un vector con la función `names ()`. Eche un vistazo a este ejemplo:
 
 ```
 some_vector <- c("John Doe", "poker player")
 names(some_vector) <- c("Name", "Profession")
 ```
 
-This code first creates a vector `some_vector` and then gives the two elements a name. The first element is assigned the name `Name`, while the second element is labeled `Profession`. Printing the contents to the console yields following output:
+Este código primero crea un vector `some_vector` y luego le da un nombre a los dos elementos. Al primer elemento se le asigna el nombre "Nombre", mientras que al segundo elemento se le asigna la etiqueta "Profesión". La impresión del contenido en la consola produce la siguiente salida:
 
 ```
           Name     Profession 
     "John Doe" "poker player" 
 ```
-
-`@instructions`
-- The code in the editor names the elements in `poker_vector` with the days of the week. Add code to do the same thing for `roulette_vector`.
-
-`@hint`
-You can use `names(roulette_vector)` to set the names of the variable `roulette_vector`. Make sure to use the same vector with the days of the week as names. Remember that R is case sensitive!
 
 
 `@sample_code`
@@ -177,20 +162,14 @@ names(roulette_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 
 ---
 
-## Naming a vector (2)
+## Nombrando vectores (2)
 
-If you want to become a good statistician, you have to become lazy. (If you are already lazy, chances are high you are one of those exceptional, natural-born statistical talents.)
+Si quieres convertirte en un buen estadístico, tienes que volverte perezoso. (Si ya es vago, es muy probable que sea uno de esos talentos estadísticos naturales excepcionales).
 
-In the previous exercises you probably experienced that it is boring and frustrating to type and retype information such as the days of the week. However, when you look at it from a higher perspective, there is a more efficient way to do this, namely, to assign the days of the week vector to a **variable**! 
+En los ejercicios anteriores probablemente experimentó que es aburrido y frustrante escribir y volver a escribir información como los días de la semana. Sin embargo, cuando lo mira desde una perspectiva más alta, hay una forma más eficiente de hacer esto, es decir, ¡asignar el vector de días de la semana a una ** variable **!
 
-Just like you did with your poker and roulette returns, you can also create a variable that contains the days of the week. This way you can use and re-use it.
+Al igual que hizo con sus devoluciones de póquer y ruleta, también puede crear una variable que contenga los días de la semana. De esta manera puede usarlo y reutilizarlo.
 
-`@instructions`
-- A variable `days_vector` that contains the days of the week has already been created for you.
-- Use `days_vector` to set the names of `poker_vector` and `roulette_vector`.
-
-`@hint`
-You can use `names(poker_vector) <- days_vector` to set the names of the elements `poker_vector`. Do a similar thing for `roulette_vector`.
 
 `@sample_code`
 ```{r}
@@ -226,20 +205,20 @@ names(roulette_vector) <- days_vector
 
 ---
 
-## Calculating total winnings
+## Calculando las ganancias totales
 
 
-Now that you have the poker and roulette winnings nicely as named vectors, you can start doing some data analytical magic. 
+Ahora que tiene las ganancias del póquer y la ruleta como vectores con nombre, puede comenzar a hacer algo de magia analítica de datos.
 
-You want to find out the following type of information:
+Quieres conocer el siguiente tipo de información:
 
-- How much has been your overall profit or loss per day of the week?
-- Have you lost money over the week in total?
-- Are you winning/losing money on poker or on roulette?
+- ¿Cuál ha sido su ganancia o pérdida total por día de la semana?
+- ¿Ha perdido dinero durante la semana en total?
+- ¿Está ganando / perdiendo dinero en el póquer o en la ruleta?
 
-To get the answers, you have to do arithmetic calculations on vectors. 
+Para obtener las respuestas, debe hacer cálculos aritméticos sobre vectores.
 
-It is important to know that if you sum two vectors in R, it takes the element-wise sum. For example, the following three statements are completely equivalent:
+Es importante saber que si suma dos vectores en R, toma la suma de elementos. Por ejemplo, las siguientes tres declaraciones son completamente equivalentes:
 
 ```
 c(1, 2, 3) + c(4, 5, 6)
@@ -247,7 +226,7 @@ c(1 + 4, 2 + 5, 3 + 6)
 c(5, 7, 9)
 ```
 
-You can also do the calculations with variables that represent vectors:
+También puede hacer los cálculos con variables que representan vectores:
 
 ```
 a <- c(1, 2, 3) 
@@ -255,12 +234,7 @@ b <- c(4, 5, 6)
 c <- a + b
 ```
 
-`@instructions`
-- Take the sum of the variables `A_vector` and `B_vector` and assign it to `total_vector`.
-- Inspect the result by printing out `total_vector`.
 
-`@hint`
-Use the `+` operator to sum `A_vector` and `B_vector`. Use `<-` to assign the result to `total_vector`.
 
 `@sample_code`
 ```{r}
@@ -288,17 +262,11 @@ total_vector
 
 ---
 
-## Calculating total winnings (2)
+## Calcular las ganancias totales (2)
 
-Now you understand how R does arithmetic with vectors, it is time to get those Ferraris in your garage! First, you need to understand what the overall profit or loss per day of the week was. The total daily profit is the sum of the profit/loss you realized on poker per day, and the profit/loss you realized on roulette per day. 
+Ahora que entiendes cómo R hace aritmética con vectores, ¡es hora de tener esos Ferrari en tu garaje! Primero, debe comprender cuál fue la ganancia o pérdida general por día de la semana. La ganancia diaria total es la suma de las ganancias / pérdidas que obtuviste en el póquer por día y las ganancias / pérdidas que obtuviste en la ruleta por día.
 
-In R, this is just the sum of `roulette_vector` and `poker_vector`.
-
-`@instructions`
-Assign to the variable `total_daily` how much you won or lost on each day in total (poker and roulette combined).
-
-`@hint`
-Similar to the previous exercise, assign the sum of two vectors to a new variable, `total_daily`.
+En R, esto es solo la suma de `roulette_vector` y` poker_vector`.
 
 
 `@sample_code`
@@ -330,24 +298,12 @@ total_daily <- poker_vector + roulette_vector
 
 ---
 
-## Calculating total winnings (3)
+## Calcular las ganancias totales (3)
 
 
-Based on the previous analysis, it looks like you had a mix of good and bad days. This is not what your ego expected, and you wonder if there may be a very tiny chance you have lost money over the week in total? 
+Según el análisis anterior, parece que tuvo una combinación de días buenos y malos. Esto no es lo que su ego esperaba, y se pregunta si existe una mínima posibilidad de que haya perdido dinero durante la semana en total.
 
-A function that helps you to answer this question is [`sum()`](http://www.rdocumentation.org/packages/base/functions/sum). It calculates the sum of all elements of a vector. For example, to calculate the total amount of money you have lost/won with poker you do: 
-
-```
-total_poker <- sum(poker_vector)
-```
-
-`@instructions`
-- Calculate the total amount of money that you have won/lost with roulette and assign to the variable `total_roulette`.
-- Now that you have the totals for roulette and poker, you can easily calculate `total_week` (which is the sum of all gains and losses of the week).
-- Print out `total_week`.
-
-`@hint`
-Use the [`sum()`](http://www.rdocumentation.org/packages/base/functions/sum) function to get the total of the `roulette_vector`. `total_week` is then the sum of `roulette_vector` and `poker_vector`.
+Una función que le ayuda a responder esta pregunta es [`sum ()`] (http://www.rdocumentation.org/packages/base/functions/sum). Calcula la suma de todos los elementos de un vector. Por ejemplo, para calcular la cantidad total de dinero que ha perdido / ganado con el póquer, debe hacer lo siguiente:
 
 `@sample_code`
 ```{r}
@@ -395,11 +351,11 @@ total_week
 
 ---
 
-## Comparing total winnings
+## Comparación de ganancias totales
 
-Oops, it seems like you are losing money. Time to rethink and adapt your strategy! This will require some deeper analysis... 
+Vaya, parece que está perdiendo dinero. ¡Es hora de repensar y adaptar su estrategia! Esto requerirá un análisis más profundo ...
 
-After a short brainstorm in your hotel's jacuzzi, you realize that a possible explanation might be that your skills in roulette are not as well developed as your skills in poker. So maybe your total gains in poker are higher (or `>` ) than in roulette.
+Después de una breve lluvia de ideas en el jacuzzi de su hotel, se da cuenta de que una posible explicación podría ser que sus habilidades en la ruleta no están tan desarrolladas como sus habilidades en el póquer. Entonces, tal vez sus ganancias totales en el póquer sean más altas (o ">") que en la ruleta.
 
 `@sample_code`
 ```{r}
@@ -437,24 +393,14 @@ total_poker > total_roulette
 
 ---
 
-## Vector selection: the good times
+## Selección de vectores: los buenos tiempos
 
-Your hunch seemed to be right. It appears that the poker game is more your cup of tea than roulette. 
+Tu corazonada parecía acertada. Parece que el juego de póquer es más tu taza de té que la ruleta.
 
-Another possible route for investigation is your performance at the beginning of the working week compared to the end of it. You did have a couple of Margarita cocktails at the end of the week... 
+Otra posible vía de investigación es su desempeño al comienzo de la semana laboral en comparación con el final de la misma. Tuviste un par de cócteles Margarita al final de la semana ...
 
-To answer that question, you only want to focus on a selection of the `total_vector`. In other words, our goal is to select specific elements of the vector. To select elements of a vector (and later matrices, data frames, ...), you can use square brackets. Between the square brackets, you indicate what elements to select. For example, to select the first element of the vector, you type `poker_vector[1]`. To select the second element of the vector, you type `poker_vector[2]`, etc. Notice that the first element in a vector has index 1, not 0 as in many other programming languages.
+Para responder a esa pregunta, solo desea centrarse en una selección del `total_vector`. En otras palabras, nuestro objetivo es seleccionar elementos específicos del vector. Para seleccionar elementos de un vector (y matrices posteriores, marcos de datos, ...), puede utilizar corchetes. Entre corchetes, indica qué elementos seleccionar. Por ejemplo, para seleccionar el primer elemento del vector, escriba `poker_vector [1]`. Para seleccionar el segundo elemento del vector, escriba `poker_vector [2]`, etc. Observe que el primer elemento en un vector tiene índice 1, no 0 como en muchos otros lenguajes de programación.
 
-`@instructions`
-Assign the poker results of Wednesday to the variable `poker_wednesday`.
-
-`@hint`
-Wednesday is the third element of `poker_vector`, and can thus be selected with `poker_vector[3]`.
-
-`@pre_exercise_code`
-```{r}
-# no pec
-```
 
 `@sample_code`
 ```{r}
@@ -483,12 +429,12 @@ poker_wednesday <- poker_vector[3]
 ```
 ---
 
-## Vector selection: the good times (2)
+## Selección de vectores: los buenos tiempos (2)
 ```
 
-How about analyzing your midweek results? 
+¿Qué tal analizar los resultados de la semana?
 
-To select multiple elements from a vector, you can add square brackets at the end of it. You can indicate between the brackets what elements should be selected. For example: suppose you want to select the first and the fifth day of the week: use the vector `c(1, 5)` between the square brackets. For example, the code below selects the first and fifth element of `poker_vector`:
+Para seleccionar varios elementos de un vector, puede agregar corchetes al final. Puede indicar entre paréntesis qué elementos deben seleccionarse. Por ejemplo: suponga que desea seleccionar el primer y quinto día de la semana: utilice el vector `c (1, 5)` entre corchetes. Por ejemplo, el siguiente código selecciona el primer y quinto elemento de `poker_vector`:
 
 ```
 poker_vector[c(1, 5)]
@@ -530,20 +476,12 @@ poker_midweek <- poker_vector[c(2, 3, 4)]
 ## Vector selection: the good times (3)
 
 
-Selecting multiple elements of `poker_vector` with `c(2, 3, 4)` is not very convenient. Many statisticians are lazy people by nature, so they created an easier way to do this: `c(2, 3, 4)` can be abbreviated to`2:4`, which generates a vector with all natural numbers from 2 up to 4.
+## Selección de vectores: los buenos tiempos (3)
 
-So, another way to find the mid-week results is `poker_vector[2:4]`. Notice how the vector `2:4` is placed between the square brackets to select element 2 up to 4.
 
-`@instructions`
-Assign to `roulette_selection_vector` the roulette results from Tuesday up to Friday; make use of `:` if it makes things easier for you.
+Seleccionar varios elementos de `poker_vector` con` c (2, 3, 4) `no es muy conveniente. Muchos estadísticos son personas perezosas por naturaleza, por lo que crearon una forma más fácil de hacer esto: `c (2, 3, 4)` se puede abreviar como`2: 4`, lo que genera un vector con todos los números naturales desde 2 hasta 4.
 
-`@hint`
-Assign a selection of `roulette_vector` to `roulette_selection_vector` by placing `2:5` between square brackets.
-
-`@pre_exercise_code`
-```{r}
-
-```
+Entonces, otra forma de encontrar los resultados de mitad de semana es `poker_vector [2: 4]`. Observe cómo el vector `2: 4` se coloca entre los corchetes para seleccionar el elemento 2 hasta el 4.
 
 `@sample_code`
 ```{r}
@@ -574,15 +512,18 @@ roulette_selection_vector <- roulette_vector[2:5]
 
 ## Vector selection: the good times (4)
 
-Another way to tackle the previous exercise is by using the names of the vector elements (Monday, Tuesday, ...) instead of their numeric positions. For example, 
+## Selección de vectores: los buenos tiempos (4)
 
-```
-poker_vector["Monday"]
-```
+Otra forma de abordar el ejercicio anterior es utilizando los nombres de los elementos vectoriales (lunes, martes, ...) en lugar de sus posiciones numéricas. Por ejemplo,
 
-will select the first element of `poker_vector` since `"Monday"` is the name of that first element.
+'''
+poker_vector ["lunes"]
+'''
 
-Just like you did in the previous exercise with numerics, you can also use the element names to select multiple elements, for example: 
+
+seleccionará el primer elemento de `poker_vector` ya que` "Monday" `es el nombre de ese primer elemento.
+
+Al igual que hizo en el ejercicio anterior con números, también puede usar los nombres de los elementos para seleccionar varios elementos, por ejemplo:
 
 ```
 poker_vector[c("Monday","Tuesday")]
@@ -657,13 +598,6 @@ c(4, 5, 6) > 5
 
 This command tests for every element of the vector if the condition stated by the comparison operator is `TRUE` or `FALSE`.
 
-`@instructions`
-- Check which elements in `poker_vector` are positive (i.e. > 0) and assign this to `selection_vector`. 
-- Print out `selection_vector` so you can inspect it. The printout tells you whether you won (`TRUE`) or lost (`FALSE`) any money for each day.
-
-`@hint`
-In order to check for which days your poker gains are positive, R should check for each element of `poker_vector` whether it is larger than zero. `some_vector > 0` is the way to tell R what you are after.
-
 `@sample_code`
 ```{r}
 # Poker and roulette winnings from Monday to Friday:
@@ -700,36 +634,22 @@ selection_vector
 
 ## Selection by comparison - Step 2
 
-```yaml
-type: NormalExercise
-key: 2754fc5cd4
-xp: 100
-skills:
-  - 1
-```
 
-Working with comparisons will make your data analytical life easier. Instead of selecting a subset of days to investigate yourself (like before), you can simply ask R to return only those days where you realized a positive return for poker. 
+## Selección por comparación - Paso 2
 
-In the previous exercises you used `selection_vector <- poker_vector > 0` to find the days on which you had a positive poker return. Now, you would like to know not only the days on which you won, but also how much you won on those days. 
 
-You can select the desired elements, by putting `selection_vector` between the square brackets that follow `poker_vector`:
+Trabajar con comparaciones facilitará la vida analítica de sus datos. En lugar de seleccionar un subconjunto de días para investigarlo usted mismo (como antes), simplemente puede pedirle a R que regrese solo aquellos días en los que obtuvo un rendimiento positivo para el póquer.
+
+En los ejercicios anteriores usaste `selection_vector <- poker_vector> 0` para encontrar los días en los que tuviste un rendimiento de poker positivo. Ahora, le gustaría saber no solo los días en los que ganó, sino también cuánto ganó en esos días.
+
+Puede seleccionar los elementos deseados, poniendo `selection_vector` entre los corchetes que siguen a` poker_vector`:
 
 ```
 poker_vector[selection_vector]
 ```
 
-R knows what to do when you pass a logical vector in square brackets: it will only select the elements that correspond to `TRUE` in `selection_vector`.
+R sabe qué hacer cuando pasa un vector lógico entre corchetes: solo seleccionará los elementos que corresponden a `TRUE` en `selection_vector`.
 
-`@instructions`
-Use `selection_vector` in square brackets to assign the amounts that you won on the profitable days to the variable `poker_winning_days`.
-
-`@hint`
-Use `poker_vector[selection_vector]` to select the desired elements from `poker_vector`, and assign the result to `poker_winning_days`.
-
-`@pre_exercise_code`
-```{r}
-# no pec
-```
 
 `@sample_code`
 ```{r}
@@ -764,19 +684,7 @@ poker_winning_days <- poker_vector[selection_vector]
 ```
 
 
-Just like you did for poker, you also want to know those days where you realized a positive return for roulette.
-
-`@instructions`
-- Create the variable `selection_vector`, this time to see if you made profit with roulette for different days.
-- Assign the amounts that you made on the days that you ended positively for roulette to the variable `roulette_winning_days`. This vector thus contains the positive winnings of `roulette_vector`.
-
-`@hint`
-Once you've correctly calculated `selection_vector`, you can again use `roulette_vector[selection_vector]` to select the positive results from `roulette_vector`.
-
-`@pre_exercise_code`
-```{r}
-# no pec
-```
+Al igual que hiciste con el póquer, también querrás saber aquellos días en los que obtuviste un rendimiento positivo de la ruleta.
 
 `@sample_code`
 ```{r}
