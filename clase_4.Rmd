@@ -1,0 +1,390 @@
+---
+title: "Dataframes"
+author: "Paolo Rivas"
+date: "6/12/2021"
+output: html_document
+---
+
+---
+title_meta: Chapter 5
+title: Data frames
+descripción:> -
+   La mayoría de los conjuntos de datos con los que trabajará se almacenarán como marcos de datos. Por el
+   Al final de este capítulo, podrá crear un marco de datos, seleccione
+   partes interesantes de un marco de datos, y ordenar un marco de datos de acuerdo con ciertos
+   variables.
+---
+
+## ¿Qué es un marco de datos?
+
+Tal vez recuerde del capítulo sobre matrices que todos los elementos que coloque en una matriz deben ser del mismo tipo. En aquel entonces, su conjunto de datos en Star Wars solo contenía elementos numéricos.
+
+Sin embargo, cuando realiza una encuesta de investigación de mercado, a menudo tiene preguntas como:
+
+- '¿Estás casado?' o preguntas de "sí / no" ("lógicas")
+- '¿Cuántos años tienes?' (`numérico`)
+- '¿Cuál es su opinión sobre este producto?' u otras preguntas 'abiertas' (`carácter`)
+- ...
+
+El resultado, es decir, las respuestas de los encuestados a las preguntas formuladas anteriormente, es un conjunto de datos de diferentes tipos de datos. A menudo se encontrará trabajando con conjuntos de datos que contienen diferentes tipos de datos en lugar de solo uno.
+
+Un marco de datos tiene las variables de un conjunto de datos como columnas y las observaciones como filas. Este será un concepto familiar para quienes provengan de diferentes paquetes de software estadístico como SAS o SPSS.
+
+
+`@sample_code`
+```{r}
+# Print out built-in R data frame
+mtcars 
+```
+
+`@solution`
+```{r}
+# Print out built-in R data frame
+mtcars 
+```
+---
+
+## Quick, have a look at your data set
+
+Wow, that is a lot of cars! 
+
+Working with large data sets is not uncommon in data analysis. When you work with (extremely) large data sets and data frames, your first task as a data analyst is to develop a clear understanding of its structure and main elements. Therefore, it is often useful to show only a small part of the entire data set. 
+
+Entonces, ¿cómo hacer esto en R? Bueno, la función [`head ()`] (http://www.rdocumentation.org/packages/utils/functions/head) le permite mostrar las primeras observaciones de un marco de datos. De manera similar, la función [`tail ()`] (http://www.rdocumentation.org/packages/utils/functions/head) imprime las últimas observaciones en su conjunto de datos.
+
+Tanto [`head ()`] (http://www.rdocumentation.org/packages/utils/functions/head) como [`tail ()`] (http://www.rdocumentation.org/packages/utils/ functions / head) imprime una línea superior llamada 'encabezado', que contiene los nombres de las diferentes variables en su conjunto de datos.
+
+
+`@sample_code`
+```{r}
+# Call head() on mtcars
+```
+
+`@solution`
+```{r}
+# Call head() on mtcars
+head(mtcars)
+```
+
+---
+
+## Echa un vistazo a la estructura
+
+Otro método que se utiliza a menudo para obtener una visión general rápida de sus datos es la función [`str ()`] (http://www.rdocumentation.org/packages/utils/functions/str). La función [`str ()`] (http://www.rdocumentation.org/packages/utils/functions/str) le muestra la estructura de su conjunto de datos. Para un marco de datos, le dice:
+
+- El número total de observaciones (por ejemplo, 32 tipos de automóviles)
+- El número total de variables (por ejemplo, 11 características del automóvil)
+- Una lista completa de los nombres de las variables (por ejemplo, `mpg`,` cyl` ...)
+- El tipo de datos de cada variable (por ejemplo, `num`)
+- Las primeras observaciones
+
+La aplicación de la función [`str ()`] (http://www.rdocumentation.org/packages/utils/functions/str) será a menudo lo primero que haga cuando reciba un nuevo conjunto de datos o marco de datos. Es una excelente manera de obtener más información sobre su conjunto de datos antes de sumergirse en el análisis real.
+
+
+`@sample_code`
+```{r}
+# Investigate the structure of mtcars
+```
+
+`@solution`
+```{r}
+# Investigate the structure of mtcars
+str(mtcars)
+```
+
+---
+
+## Creando un marco de datos
+
+Dado que el uso de conjuntos de datos integrados no es ni la mitad de la diversión de crear sus propios conjuntos de datos, el resto de este capítulo se basa en su conjunto de datos desarrollado personalmente. ¡Ponte tu mochila propulsora porque es hora de explorar el espacio!
+
+Como primer objetivo, desea construir un marco de datos que describa las principales características de ocho planetas de nuestro sistema solar. Según tu buen amigo Buzz, las principales características de un planeta son:
+
+- El tipo de planeta (terrestre o gigante gaseoso).
+- El diámetro del planeta en relación con el diámetro de la Tierra.
+- La rotación del planeta a través del sol en relación con la de la Tierra.
+- Si el planeta tiene anillos o no (VERDADERO o FALSO).
+
+Después de hacer una investigación de alta calidad en [Wikipedia] (http://en.wikipedia.org/wiki/Planet), se siente lo suficientemente seguro como para crear los vectores necesarios: `nombre`,` tipo`, `diámetro`,` rotación` y `anillos`; estos vectores ya han sido codificados en el editor. El primer elemento de cada uno de estos vectores corresponde a la primera observación.
+
+Construye un marco de datos con la función [`data.frame ()`] (http://www.rdocumentation.org/packages/base/functions/data.frame). Como argumentos, pasa los vectores de antes: se convertirán en las diferentes columnas de su marco de datos. Debido a que todas las columnas tienen la misma longitud, los vectores que pase también deben tener la misma longitud. Pero no olvide que es posible (y probable) que contengan diferentes tipos de datos.
+
+`@sample_code`
+```{r}
+# Definition of vectors
+name <- c("Mercury", "Venus", "Earth", 
+          "Mars", "Jupiter", "Saturn", 
+          "Uranus", "Neptune")
+type <- c("Terrestrial planet", 
+          "Terrestrial planet", 
+          "Terrestrial planet", 
+          "Terrestrial planet", "Gas giant", 
+          "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532, 
+              11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.64, -243.02, 1, 1.03, 
+              0.41, 0.43, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+# Create a data frame from the vectors
+planets_df <-
+```
+
+`@solution`
+```{r}
+# Definition of vectors
+name <- c("Mercury", "Venus", "Earth", 
+          "Mars", "Jupiter", "Saturn", 
+          "Uranus", "Neptune")
+type <- c("Terrestrial planet", 
+          "Terrestrial planet", 
+          "Terrestrial planet", 
+          "Terrestrial planet", "Gas giant", 
+          "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532, 
+              11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.64, -243.02, 1, 1.03,
+              0.41, 0.43, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+# Create a data frame from the vectors
+planets_df <- data.frame(name, type, diameter, rotation, rings)
+```
+
+---
+
+## Creando un marco de datos (2)
+
+El marco de datos `planets_df` debe tener 8 observaciones y 5 variables. Se ha puesto a disposición en el espacio de trabajo, por lo que puede usarlo directamente.
+
+
+`@sample_code`
+```{r}
+# Check the structure of planets_df
+```
+
+`@solution`
+```{r}
+# Check the structure of planets_df
+str(planets_df)
+```
+
+---
+
+## Selección de elementos del marco de datos
+
+
+De manera similar a los vectores y matrices, usted selecciona elementos de un marco de datos con la ayuda de corchetes `[]`. Usando una coma, puede indicar qué seleccionar de las filas y columnas respectivamente. Por ejemplo:
+
+- `my_df [1,2]` selecciona el valor en la primera fila y segunda columna en `my_df`.
+- `my_df [1: 3,2: 4]` selecciona las filas 1, 2, 3 y las columnas 2, 3, 4 en `my_df`.
+
+A veces, desea seleccionar todos los elementos de una fila o columna. Por ejemplo, `my_df [1,]` selecciona todos los elementos de la primera fila. ¡Apliquemos ahora esta técnica en `planets_df`!
+
+
+`@pre_exercise_code`
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/planets.RData"))
+```
+
+`@sample_code`
+```{r}
+# The planets_df data frame from the previous exercise is pre-loaded
+# Print out diameter of Mercury (row 1, column 3)
+# Print out data for Mars (entire fourth row)
+```
+
+`@solution`
+```{r}
+# The planets_df data frame from the previous exercise is pre-loaded
+# Print out diameter of Mercury (row 1, column 3)
+planets_df[1,3]
+# Print out data for Mars (entire fourth row)
+planets_df[4, ]
+```
+
+---
+
+## Selección de elementos del marco de datos (2)
+
+En lugar de usar números para seleccionar elementos de un marco de datos, también puede usar los nombres de las variables para seleccionar columnas de un marco de datos.
+
+Suponga que desea seleccionar los primeros tres elementos de la columna "tipo". Una forma de hacer esto es
+```
+planets_df[1:3,2]
+```
+
+Una posible desventaja de este enfoque es que debe conocer (o buscar) el número de columna de "tipo", lo que se vuelve difícil si tiene muchas variables. A menudo es más fácil hacer uso del nombre de la variable:
+```
+planets_df[1:3,"type"]
+```
+
+`@sample_code`
+```{r}
+# The planets_df data frame from the previous exercise is pre-loaded
+# Select first 5 values of diameter column
+```
+
+`@solution`
+```{r}
+# The planets_df data frame from the previous exercise is pre-loaded
+# Select first 5 values of diameter column
+planets_df[1:5, "diameter"]
+```
+
+---
+
+## Solo planetas con anillos
+A menudo, querrá seleccionar una columna completa, es decir, una variable específica de un marco de datos. Si desea seleccionar todos los elementos de la variable `diámetro`, por ejemplo, ambos funcionarán:
+
+```
+planets_df[,3]
+planets_df[,"diameter"]
+```
+
+Sin embargo, hay un atajo. Si sus columnas tienen nombres, puede usar el signo `$`:
+
+```
+planets_df$diameter
+```
+
+`@pre_exercise_code`
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/planets.RData"))
+```
+
+`@sample_code`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Select the rings variable from planets_df
+rings_vector <- 
+  
+# Print out rings_vector
+```
+
+`@solution`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Select the rings variable from planets_df
+rings_vector <- planets_df$rings
+# Print out rings_vector
+rings_vector
+```
+
+---
+
+## Only planets with rings (2)
+
+You probably remember from high school that some planets in our solar system have rings and others do not. Unfortunately you can not recall their names. Could R help you out?
+
+Si escribe `rings_vector` en la consola, obtiene:
+```
+[1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+```
+
+Esto significa que las primeras cuatro observaciones (o planetas) no tienen un anillo ("FALSO"), pero las otras cuatro sí ("VERDADERO"). Sin embargo, no obtienes una buena descripción general de los nombres de estos planetas, su diámetro, etc. Intentemos usar `rings_vector` para seleccionar los datos de los cuatro planetas con anillos.
+
+`@sample_code`
+```{r}
+# planets_df and rings_vector are pre-loaded in your workspace
+# Adapt the code to select all columns for planets with rings
+planets_df[rings_vector, "name"]
+```
+
+`@solution`
+```{r}
+# planets_df and rings_vector are pre-loaded in your workspace
+# Adapt the code to select all columns for planets with rings
+planets_df[rings_vector, ]
+```
+
+---
+## Solo planetas con anillos pero más cortos
+
+Entonces, ¿qué aprendiste exactamente en los ejercicios anteriores? Seleccionaste un subconjunto de un marco de datos (`planets_df`) en función de si una determinada condición era verdadera o no (anillos o ningún anillo), y lograste extraer todos los datos relevantes. ¡Bastante impresionante! A estas alturas, probablemente la NASA ya esté coqueteando con tu CV ;-).
+
+Ahora, avancemos un nivel y usemos la función [`subset ()`] (http://www.rdocumentation.org/packages/base/functions/subset). Debería ver la función [`subset ()`] (http://www.rdocumentation.org/packages/base/functions/subset) como un atajo para hacer exactamente lo mismo que hizo en los ejercicios anteriores.
+
+```
+subset(my_df, subset = some_condition)
+``` 
+
+El primer argumento de [`subset ()`] (http://www.rdocumentation.org/packages/base/functions/subset) especifica el conjunto de datos para el que desea un subconjunto. Al agregar el segundo argumento, le da a R la información y las condiciones necesarias para seleccionar el subconjunto correcto.
+
+El siguiente código dará exactamente el mismo resultado que obtuviste en el ejercicio anterior, pero esta vez, ¡no necesitas el `rings_vector`!
+```
+subset(planets_df, subset = rings)
+```
+
+`@sample_code`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Select planets with diameter < 1
+```
+
+`@solution`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Select planets with diameter < 1
+subset(planets_df, subset = diameter < 1)
+```
+---
+
+## Clasificación (sorting)
+
+Hacer y crear clasificaciones es uno de los asuntos favoritos de la humanidad. Estos rankings pueden ser útiles (las mejores universidades del mundo), entretenidos (las estrellas de cine más influyentes) o inútiles (el mejor parecido a 007).
+
+En el análisis de datos, puede ordenar sus datos de acuerdo con una determinada variable en el conjunto de datos. En R, esto se hace con la ayuda de la función [`order ()`] (http://www.rdocumentation.org/packages/base/functions/order).
+
+[`order ()`] (http://www.rdocumentation.org/packages/base/functions/order) es una función que le da la posición clasificada de cada elemento cuando se aplica a una variable, como un vector por ejemplo:
+
+```
+a <- c(100, 10, 1000)
+order(a)
+[1] 2 1 3
+```
+
+10, que es el segundo elemento en `a`, es el elemento más pequeño, por lo que 2 es el primero en la salida de` order (a) `. 100, que es el primer elemento en `a` es el segundo elemento más pequeño, por lo que 1 ocupa el segundo lugar en la salida de` order (a) `.
+
+Esto significa que podemos usar la salida de `order (a)` para reorganizar `a`:
+    
+```
+a[order(a)]
+[1]   10  100 1000
+```
+
+`@sample_code`
+```{r}
+# Play around with the order function in the console
+```
+
+`@solution`
+```{r}
+# Play around with the order function in the console
+```
+
+`@sct`
+```{r}
+success_msg("Great! Now let's use the `order()` function to sort your data frame!")
+```
+
+---
+
+## Ordenar su marco de datos
+
+Muy bien, ahora que comprende la función [`order ()`] (http://www.rdocumentation.org/packages/base/functions/order), hagamos algo útil con ella. Le gustaría reorganizar su marco de datos de manera que comience con el planeta más pequeño y termine con el más grande. Una clasificación en la columna "diámetro".
+
+`@sample_code`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Use order() to create positions
+positions <-  
+# Use positions to sort planets_df
+```
+
+`@solution`
+```{r}
+# planets_df is pre-loaded in your workspace
+# Use order() to create positions
+positions <- order(planets_df$diameter)
+# Use positions to sort planets_df
+planets_df[positions, ]
+```

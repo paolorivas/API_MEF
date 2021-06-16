@@ -1,0 +1,328 @@
+---
+title: "clase_5"
+author: "Paolo Rivas"
+date: "6/16/2021"
+output: html_document
+---
+## Data wrangling
+
+En este capítulo, aprenderá a hacer tres cosas con una tabla: filtrar por observaciones particulares, organizar las observaciones en el orden deseado y mutar para agregar o cambiar una columna. Verá cómo cada uno de estos pasos le permite responder preguntas sobre sus datos.
+
+
+### Carga de los paquetes gapminder y dplyr
+
+Antes de poder trabajar con el conjunto de datos gapminder, deberá cargar dos paquetes R que contengan las herramientas para trabajar con él, luego mostrar el conjunto de datos `gapminder` para que pueda ver lo que contiene.
+
+A su derecha, verá dos ventanas dentro de las cuales puede ingresar código: La ventana `script.R` y la Consola R. Todo el código para resolver cada ejercicio debe ir dentro de `script.R`.
+
+Si presiona * Enviar respuesta *, su secuencia de comandos R se ejecuta y la salida se muestra en la Consola R. DataCamp verifica si su envío es correcto y le brinda comentarios. Puede presionar * Enviar respuesta * tantas veces como desee. Si está atascado, puede pedir una pista o una solución.
+
+Puede usar la Consola R de forma interactiva simplemente escribiendo el código R y presionando Enter. Cuando trabaja directamente en la consola, no se verificará que su código sea correcto, por lo que es una excelente manera de experimentar y explorar.
+
+#### Instrucciones
+* * Use la función * `library ()` * para cargar el paquete * `dplyr` *, al igual que hemos cargado el paquete *` gapminder` para usted. Escriba * `gapminder` *, en su propia línea, para ver el conjunto de datos de gapminder. *
+```{r}
+# Load the gapminder package
+library(gapminder)
+# Load the dplyr package
+library(dplyr)
+# Look at the gapminder dataset
+gapminder
+```
+
+**Observe que puede ver el conjunto de datos gapminder en la salida de la consola en la parte inferior derecha. Esto se llama 'imprimir' un conjunto de datos. **
+
+### Comprender un marco de datos
+
+Ahora que ha cargado el conjunto de datos `gapminder`, puede comenzar a examinarlo y comprenderlo.
+
+Ya hemos cargado los paquetes `gapminder` y` dplyr`. Escribe "gapminder" en tu terminal R, a la derecha, para mostrar el objeto.
+
+### Filtrado por un año
+
+El verbo `filter` extrae observaciones particulares basadas en una condición. En este ejercicio, filtrará las observaciones de un año en particular.
+
+#### Instrucciones
+* Agregue una línea * `filter ()` * después de la tubería (* `%>%` *) para extraer solo las observaciones del año 1957. Recuerde que usa * `==` * para comparar dos valores. *
+```{r}
+library(gapminder)
+library(dplyr)
+# Filter the gapminder dataset for the year 1957
+gapminder %>%
+  filter(year == 1957)
+```
+
+**¡Así es! Observe que todas las observaciones en la salida tienen el año 1957. **
+
+### Filtrado por un país y un año
+
+También puede usar el verbo `filter ()` para establecer dos condiciones, que podrían recuperar una sola observación.
+
+Al igual que en el último ejercicio, puede hacer esto en dos líneas de código, comenzando con `gapminder%>%` y teniendo el `filter ()` en la segunda línea. Mantener un verbo en cada línea ayuda a que el código sea legible. Tenga en cuenta que cada vez, colocará la barra vertical `%>%` al final de la primera línea (como `gapminder%>%`); poner la tubería al principio de la segunda línea arrojará un error.
+
+#### Instrucciones
+* Filtre los datos de * `gapminder` * para recuperar solo la observación de China en el año 2002. *
+```{r}
+library(gapminder)
+library(dplyr)
+# Filter for China in 2002
+gapminder %>%
+  filter(country == "China", year == 2002)
+```
+
+### Organizar observaciones por esperanza de vida
+
+Utiliza `arreglar ()` para ordenar las observaciones en orden ascendente o descendente de una variable en particular. En este caso, ordenarás el conjunto de datos según la variable `lifeExp`.
+
+#### Instrucciones
+* * Ordene el * `gapminder` * conjunto de datos en orden ascendente de esperanza de vida (*` lifeExp` *). *
+* * Ordene el * `gapminder` * conjunto de datos en orden descendente de esperanza de vida. *
+```{r}
+library(gapminder)
+library(dplyr)
+# Sort in ascending order of lifeExp
+gapminder %>%
+  arrange(lifeExp)
+  
+# Sort in descending order of lifeExp
+gapminder %>%
+  arrange(desc(lifeExp))
+```
+### Filtrar y organizar
+
+A menudo necesitará usar el operador de tubería (`%>%`) para combinar varios verbos dplyr en una fila. En este caso, combinará un `filtro ()` con un `organizar ()` para encontrar los países con mayor población en un año en particular.
+
+#### Instrucciones
+* Use * `filter ()` * para extraer observaciones solo del año 1957, luego use * `arreglar ()` * para ordenar en orden descendente de población (* `pop` *). *
+```{r}
+library(gapminder)
+library(dplyr)
+# Filter for the year 1957, then arrange in descending order of population
+gapminder %>%
+  filter(year == 1957) %>%
+  arrange(desc(pop))
+```
+
+### Uso de mutar para cambiar o crear una columna
+
+Supongamos que queremos que la esperanza de vida se mida en meses en lugar de años: tendría que multiplicar el valor existente por 12. Puede usar el verbo `mutate ()` para cambiar esta columna, o para crear una nueva columna que se calcule así camino.
+
+#### Instrucciones
+* * Use * `mutate ()` * para cambiar la columna * `lifeExp` * existente, multiplicándola por 12: *` 12 * lifeExp` *. *
+* * Use * `mutate ()` * para agregar una nueva columna, llamada * `lifeExpMonths` *, calculada como *` 12 * lifeExp` *. *
+
+```{r}
+library(gapminder)
+library(dplyr)
+# Use mutate to change lifeExp to be in months
+gapminder %>%
+  mutate(lifeExp = lifeExp * 12)
+# Use mutate to create a new column called lifeExpMonths
+gapminder %>%
+  mutate(lifeExpMonths = lifeExp * 12)
+```
+
+
+### Combinando filtrar, mutar y organizar
+
+En este ejercicio, combinará los tres verbos que ha aprendido en este capítulo para encontrar los países con la mayor esperanza de vida, en meses, en el año 2007.
+
+#### Instrucciones
+* En una secuencia de tuberías en el * `gapminder` * conjunto de datos: *
+
+* `filter ()` * para observaciones del año 2007, *
+* `mutate ()` * para crear una columna * `lifeExpMonths` *, calculada como *` 12 * lifeExp` *, y *
+* `organizar ()` * en orden descendente de esa nueva columna. *
+```{r}
+library(gapminder)
+library(dplyr)
+# Filter, mutate, and arrange the gapminder dataset
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(lifeExpMonths = lifeExp * 12) %>%
+  arrange(desc(lifeExpMonths))
+```
+
+---
+
+BREAK Y SEGUIMOS CON VISUALIZACIÓN
+
+---
+## Data visualization
+
+Ya ha podido responder algunas preguntas sobre los datos a través de dplyr, pero se ha comprometido con ellos solo como una tabla (como una que muestra la esperanza de vida en los EE. UU. Cada año). A menudo, una mejor manera de comprender y presentar dichos datos es mediante un gráfico. Aquí aprenderá la habilidad esencial de visualización de datos, usando el paquete ggplot2. La visualización y la manipulación a menudo están entrelazadas, por lo que verá cómo los paquetes dplyr y ggplot2 trabajan en estrecha colaboración para crear gráficos informativos.
+
+### Asignación de variable
+
+A lo largo de los ejercicios de este capítulo, visualizará un subconjunto de los datos de gapminder del año 1952. Primero, deberá cargar el paquete ggplot2 y crear un conjunto de datos `gapminder_1952` para visualizar.
+
+#### Instrucciones
+* * Cargue el paquete * `ggplot2` * después de los paquetes gapminder y dplyr. *
+* * Filtre * `gapminder` * para las observaciones del año 1952 y asígnelo a un nuevo conjunto de datos *` gapminder_1952` * usando el operador de asignación (* `<-` *). *
+```{r}
+# Load the ggplot2 package as well
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+# Create gapminder_1952
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+```
+
+
+### Comparación de población y PIB per cápita
+
+En el video, aprendió a crear un diagrama de dispersión con el PIB per cápita en el eje xy la esperanza de vida en el eje y (el código para ese gráfico se muestra aquí). Cuando explora datos visualmente, a menudo deberá probar diferentes combinaciones de variables y estéticas.
+
+#### Instrucciones
+* Cambie el diagrama de dispersión de * `gapminder_1952` * de modo que (*` pop` *) esté en el eje x y el PIB per cápita (* `gdpPercap` *) esté en el eje y. *
+
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Change to put pop on the x-axis and gdpPercap on the y-axis
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) +
+  geom_point()
+```
+
+
+### Comparación de población y esperanza de vida
+
+En este ejercicio, usará `ggplot2` para crear un diagrama de dispersión desde cero, para comparar la población de cada país con su esperanza de vida en el año 1952.
+
+#### Instrucciones
+* Cree un diagrama de dispersión de * `gapminder_1952` * con la población (*` pop` *) en el eje xy la esperanza de vida (* `lifeExp` *) en el eje y. *
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Create a scatter plot with pop on the x-axis and lifeExp on the y-axis
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) + 
+  geom_point()
+```
+
+
+### Poner el eje x en una escala logarítmica
+
+Anteriormente creó un diagrama de dispersión con la población en el eje xy la esperanza de vida en el eje y. Dado que la población se distribuye en varios órdenes de magnitud, y algunos países tienen una población mucho más alta que otros, es una buena idea poner el eje x en una escala logarítmica.
+
+#### Instrucciones
+* Agregue una línea * `filter ()` * después de la tubería (* `%>%` *) para extraer solo las observaciones del año 1957. Recuerde que usa * `==` * para comparar dos valores. *
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Change this plot to put the x-axis on a log scale
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
+  geom_point() +
+  scale_x_log10()
+```
+
+### Poner los ejes xey en una escala logarítmica
+
+Suponga que desea crear un diagrama de dispersión con la población en el eje xy el PIB per cápita en el eje y. Tanto la población como el PIB per cápita están mejor representados con escalas logarítmicas, ya que varían en muchos órdenes de magnitud.
+
+#### Instrucciones
+* Cree un diagrama de dispersión con la población (* `pop` *) en el eje xy el PIB per cápita (*` gdpPercap` *) en el eje y. Ponga ** ambos ** los ejes xey en una escala logarítmica. *
+
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Scatter plot comparing pop and gdpPercap, with both axes on a log scale
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) +
+  geom_point() + 
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+### Agregar color a un diagrama de dispersión
+
+En esta lección aprendió a usar la estética del color, que se puede usar para mostrar qué continente representa cada punto en un diagrama de dispersión.
+
+#### Instrucciones
+* Cree un diagrama de dispersión con la población (* `pop` *) en el eje x, la esperanza de vida (*` lifeExp` *) en el eje y, y con el continente (* `continente` *) representado por el color de los puntos. Coloque el eje x en una escala logarítmica. *
+
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Scatter plot comparing pop and lifeExp, with color representing continent
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent)) +
+  geom_point() +
+  scale_x_log10()
+```
+
+
+### Agregar tamaño y color a una trama
+
+En el último ejercicio, creó un diagrama de dispersión que comunica información sobre la población, la esperanza de vida y el continente de cada país. Ahora usará el tamaño de los puntos para comunicarse aún más.
+
+#### Instrucciones
+* Modificar el diagrama de dispersión para que el tamaño de los puntos represente el PIB per cápita de cada país (* `gdpPercap` *). *
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Add the size aesthetic to represent a country's gdpPercap
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent, size = gdpPercap)) +
+  geom_point() +
+  scale_x_log10()
+```
+
+### Creando un subgrafo para cada continente
+
+Haz aprendido a utilizar las facetas para dividir un gráfico en subtramas en función de una de sus variables, como el continente.
+
+#### Instrucciones
+* Cree un diagrama de dispersión de * `gapminder_1952` * con el eje x representando la población (*` pop` *), el eje y representando la esperanza de vida (* `lifeExp` *), y facetado para tener una subparcela por continente ( * `continent` *). Coloque el eje x en una escala logarítmica. *
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+# Scatter plot comparing pop and lifeExp, faceted by continent
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
+  geom_point() +
+  scale_x_log10() + 
+  facet_wrap(~ continent)
+```
+
+### Facetas por año
+
+Todos los gráficos de este capítulo han estado visualizando estadísticas dentro de un año. Sin embargo, ahora que puede utilizar las facetas, puede crear un gráfico que muestre ** todos ** los datos a nivel de país desde 1952 hasta 2007, para comprender cómo han cambiado las estadísticas globales a lo largo del tiempo.
+
+#### Instrucciones
+
+* Cree un diagrama de dispersión de los datos * `gapminder` *: *
+* * Coloque el PIB per cápita (* `gdpPercap` *) en el eje x y la esperanza de vida (*` lifeExp` *) en el eje y, con el continente (* `continente` *) representado por el color y la población (* `pop` *) representado por el tamaño. *
+* * Ponga el eje x en una escala logarítmica. *
+* * Faceta por la variable * `year` *. *
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+
+# Scatter plot comparing gdpPercap and lifeExp, with color representing continent
+# and size representing population, faceted by year
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~ year)
+```
+
